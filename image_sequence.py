@@ -1,4 +1,4 @@
-import numpy as np;
+import numpy as np
 import pandas as pd
 from PIL import Image,ImageDraw,ImageFont
 
@@ -10,25 +10,25 @@ class ImageSequence:
 		self.load_features(filename)
 
 
- 	@property
- 	def feat_2d(self):
- 		return self._feat_2d
+	@property
+	def feat_2d(self):
+		return self._feat_2d
 
 	@property
- 	def length(self):
- 		return self._length
+	def length(self):
+		return self._length
 
 	@property
- 	def number_of_features(self):
- 		return self._number_of_features
+	def number_of_features(self):
+		return self._number_of_features
 
- 	@property
- 	def width(self):
- 		return self._width
+	@property
+	def width(self):
+		return self._width
 
- 	@property
- 	def height(self):
- 		return self._height
+	@property
+	def height(self):
+		return self._height
 
 	def load_features(self,filename):
 		'''
@@ -41,9 +41,9 @@ class ImageSequence:
 		self._number_of_features=int(features_df['feature_id'].max())
 
 		#get the 2d features
-		self.feat_2d=np.zeros(shape=[self._length,4,self._number_of_features])
+		self._feat_2d=np.zeros(shape=[self._length,4,self._number_of_features])
 		for i in range(1,self._length+1):
-		 	self.feat_2d[i-1,:,:]=np.transpose(features_df.loc[features_df['image_id'] == i].values)[0:4]
+			self.feat_2d[i-1,:,:]=np.transpose(features_df.loc[features_df['image_id'] == i].values)[0:4]
 
 		#keep the image filenames
 		self._image_filenames=features_df.image_filename.unique()

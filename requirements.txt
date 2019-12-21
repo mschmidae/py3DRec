@@ -1,0 +1,7 @@
+# venv/bin/pip install -r requirements.txt
+
+numpy
+pandas
+scipy
+numpy-stl
+pillow
